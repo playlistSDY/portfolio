@@ -26,18 +26,22 @@ const canvas = document.getElementById("networkCanvas");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (canvas) {
-  const context = canvas.getContext("2d");
+  const context = canvas.getContext("2d", { alpha: true });
   const nodes = [];
   let width = 0;
   let height = 0;
   let animationFrame = 0;
+  let resizeFrame = 0;
   let pointer = { x: 0, y: 0, active: false };
 
   function resizeCanvas() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
-    const rect = canvas.getBoundingClientRect();
-    width = rect.width;
-    height = rect.height;
+    const container = canvas.parentElement || canvas;
+    const rect = container.getBoundingClientRect();
+    width = Math.max(1, Math.round(rect.width));
+    height = Math.max(1, Math.round(rect.height));
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
     canvas.width = Math.floor(width * ratio);
     canvas.height = Math.floor(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -53,6 +57,15 @@ if (canvas) {
         r: Math.random() * 1.8 + 1.4,
       });
     }
+  }
+
+  function scheduleCanvasResize() {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      cancelAnimationFrame(animationFrame);
+      resizeCanvas();
+      tick();
+    });
   }
 
   function drawNode(node) {
@@ -124,11 +137,12 @@ if (canvas) {
     pointer.active = false;
   });
 
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(animationFrame);
-    resizeCanvas();
-    tick();
-  });
+  window.addEventListener("resize", scheduleCanvasResize);
+
+  if ("ResizeObserver" in window && canvas.parentElement) {
+    const canvasObserver = new ResizeObserver(scheduleCanvasResize);
+    canvasObserver.observe(canvas.parentElement);
+  }
 
   resizeCanvas();
   tick();
