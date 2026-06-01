@@ -1,9 +1,10 @@
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, EmailStr, Field
+from starlette.middleware.gzip import GZipMiddleware
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -21,6 +22,16 @@ app = FastAPI(
     description="Responsive animated portfolio for a system builder and infrastructure engineer.",
     version="1.0.0",
 )
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+
+@app.middleware("http")
+async def cache_static_assets(request: Request, call_next) -> Response:
+    response = await call_next(request)
+    if request.url.path.startswith("/static/assets/"):
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    return response
+
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 

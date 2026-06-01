@@ -642,6 +642,7 @@ const projectData = {
 };
 
 const projectBrowser = document.getElementById("projectBrowser");
+let renderedProjectKey = "";
 
 function setText(id, value) {
   const element = document.getElementById(id);
@@ -759,6 +760,7 @@ function renderProjectShots(shots) {
     imageElement.style.objectFit = shot.fit === "contain" ? "contain" : "cover";
     imageElement.style.objectPosition = shot.position || "center";
     imageElement.alt = `${shot.title} - ${shot.caption}`;
+    imageElement.fetchPriority = index === 0 ? "high" : "low";
     imageElement.src = shot.src;
   });
 }
@@ -784,6 +786,7 @@ function renderProject(projectKey, shouldScroll = false) {
   renderProjectLinks(project.links);
   renderProjectTags(project.tags);
   renderProjectShots(project.shots);
+  renderedProjectKey = projectKey;
 
   if (shouldScroll && projectBrowser) {
     projectBrowser.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -791,11 +794,30 @@ function renderProject(projectKey, shouldScroll = false) {
 }
 
 if (projectBrowser) {
+  function renderInitialProject() {
+    if (!renderedProjectKey) {
+      renderProject("zoj");
+    }
+  }
+
   document.querySelectorAll(".project-tab, .project-jump").forEach((control) => {
     control.addEventListener("click", () => {
       renderProject(control.dataset.project, true);
     });
   });
 
-  renderProject("zoj");
+  if ("IntersectionObserver" in window) {
+    const projectObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          renderInitialProject();
+          projectObserver.disconnect();
+        }
+      },
+      { rootMargin: "700px 0px" }
+    );
+    projectObserver.observe(projectBrowser);
+  } else {
+    renderInitialProject();
+  }
 }
