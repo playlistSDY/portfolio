@@ -1,0 +1,18 @@
+{
+  "name": "손동열 Portfolio",
+  "short_name": "SDY",
+  "description": "ZOJ 개발자, HEPC 운영자, 자체 서버 인프라를 운영하는 손동열의 포트폴리오.",
+  "lang": "ko-KR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050608",
+  "theme_color": "#050608",
+  "icons": [
+    {
+      "src": "/static/assets/sdy-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

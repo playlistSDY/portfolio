@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="한양대학교 ERICA 컴퓨터학부 손동열 포트폴리오 - ZOJ, HEPC, 자체 서버 인프라와 실제 운영 서비스 기록."
+    />
+    <meta name="author" content="손동열" />
+    <meta
+      name="keywords"
+      content="손동열, SDY, 포트폴리오, ZOJ, HEPC, ZERONE, FastAPI, 인프라, 백엔드, 홈랩, 온라인 저지"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#050608" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Portfolio | 손동열</title>
+    <link rel="icon" type="image/png" href="/static/assets/sdy-icon.png" />
+    <link rel="apple-touch-icon" href="/static/assets/sdy-icon.png" />
+    <link rel="manifest" href="/static/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="손동열 Portfolio" />
+    <meta property="og:title" content="손동열 Portfolio | 배포에서 운영까지" />
+    <meta
+      property="og:description"
+      content="ZOJ 개발자, HEPC 운영자, 자체 서버 인프라를 운영하는 한양대학교 ERICA 컴퓨터학부 손동열의 포트폴리오."
+    />
+    <meta property="og:image" content="/static/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="손동열 포트폴리오 미리보기 이미지" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="손동열 Portfolio | 배포에서 운영까지" />
+    <meta
+      name="twitter:description"
+      content="ZOJ 개발자 / HEPC 운영자 / 인프라 엔지니어"
+    />
+    <meta name="twitter:image" content="/static/assets/og-image.png" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="cursor-light" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="손동열 포트폴리오 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/static/assets/sdy-icon.png" alt="" />
+        </span>
+        <span>Portfolio</span>
+      </a>
+      <nav class="site-nav" aria-label="주요 섹션">
+        <a href="#work">작업</a>
+        <a href="#projects">프로젝트</a>
+        <a href="#infra">인프라</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy reveal">
+          <div class="archive-cover" aria-label="포트폴리오 아카이브 타이틀">
+            <span class="archive-number">01.</span>
+            <strong>
+              <span>SYS-</span>
+              <span>TEMS.</span>
+            </strong>
+          </div>
+          <p class="eyebrow">ZOJ 개발자 / HEPC 운영자 / 인프라 엔지니어</p>
+          <h1>코딩, 배포에서 운영까지.</h1>
+          <p class="hero-lead">
+            한양대학교 ERICA 컴퓨터학부에서 백엔드, 인프라, 네트워크, 하드웨어 기반 시스템을 공부합니다.
+            직접 만든 서비스는 자체 서버 위에 올리고, 실제 사용자가 쓰는 흐름까지 확인합니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">프로젝트 보기</a>
+            <a class="button secondary" href="#infra">인프라 보기</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="서버와 네트워크 구조 애니메이션">
+          <canvas id="networkCanvas"></canvas>
+          <div class="ops-panel">
+            <div class="ops-panel-header">
+              <span>self-hosted</span>
+              <strong>live services</strong>
+            </div>
+            <div class="ops-row">
+              <span>judge.zerone01.kr</span>
+              <strong>ZOJ</strong>
+            </div>
+            <div class="ops-row">
+              <span>zerone01.kr</span>
+              <strong>ZERONE</strong>
+            </div>
+            <div class="ops-row">
+              <span>coder.sdy.world</span>
+              <strong>SDY.CODER</strong>
+            </div>
+            <div class="ops-row">
+              <span>nmixx.net</span>
+              <strong>NMIXX</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell proof-strip" aria-label="운영 경험 요약">
+        <article class="reveal">
+          <span>ZERONE</span>
+          <strong>누적 약 850명</strong>
+          <p>엑셀로 흩어져 있던 학회 기록을 서비스 안에서 관리합니다.</p>
+        </article>
+        <article class="reveal">
+          <span>HEPC</span>
+          <strong>2시간 350+ 채점</strong>
+          <p>상금이 지급되는 실제 대회에서 ZOJ를 첫 운영했습니다.</p>
+        </article>
+        <article class="reveal">
+          <span>Self-hosted</span>
+          <strong>클라우드 없이 운영</strong>
+          <p>프록시, 가상화, 네트워크, 서버 부품까지 직접 다룹니다.</p>
+        </article>
+      </section>
+
+      <section id="work" class="section-shell profile-section">
+        <div class="section-heading reveal">
+          <span class="section-number">02.</span>
+          <p class="eyebrow">Profile</p>
+          <h2>기능 하나보다는 실제 서비스를.</h2>
+        </div>
+        <div class="profile-grid">
+          <article class="profile-card reveal">
+            <div class="profile-name">
+              <span>Name</span>
+              <strong>손동열</strong>
+              <small>Son Dongyeol</small>
+            </div>
+            <dl class="profile-list">
+              <div>
+                <dt>학교</dt>
+                <dd>한양대학교 ERICA</dd>
+              </div>
+              <div>
+                <dt>소속</dt>
+                <dd>소프트웨어융합대학 컴퓨터학부</dd>
+              </div>
+              <div>
+                <dt>전공 방향</dt>
+                <dd>백엔드, 인프라, 네트워크, 하드웨어 기반 시스템</dd>
+              </div>
+              <div>
+                <dt>활동</dt>
+                <dd>
+                  2025 · 전공학회 영과일 인원진<br />
+                  2026 · 전공학회 영과일 13대 학회장<br />
+                  2026 · 전공자람 서버관리자 임원진<br />
+                  2026 · HEPC(Hanyang Engineering Problem Contest) 개최
+                </dd>
+              </div>
+              <div>
+                <dt>메일</dt>
+                <dd>
+                  <a href="mailto:sdy423@hanyang.ac.kr">sdy423@hanyang.ac.kr</a><br />
+                  <a href="mailto:sondongyeol1234@gmail.com">sondongyeol1234@gmail.com</a>
+                </dd>
+              </div>
+              <div>
+                <dt>GitHub</dt>
+                <dd>
+                  <a href="https://github.com/playlistSDY" target="_blank" rel="noreferrer">github.com/playlistSDY</a>
+                </dd>
+              </div>
+            </dl>
+          </article>
+          <article class="profile-note reveal">
+            <div>
+              <span>Service Scope</span>
+              <p>
+                프로젝트를 만들 때 화면만 따로 보지 않습니다. 가입 흐름, 관리자 도구, 배포 환경,
+                사용자 UX, 장애 대응, 운영자가 실제로 처리해야 하는 일까지 한 번에 봅니다.
+              </p>
+            </div>
+            <div>
+              <span>Team Work</span>
+              <p>
+                혼자 만든 서비스도 많지만 ZOJ, ZERONE 홈페이지, EFOO, Dyson Award 프로토타입처럼
+                팀과 함께 만든 작업에서는 백엔드, 인프라, 배포, 프로토타입 구현 쪽을 끝까지 맡았습니다.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell selected-section">
+        <div class="section-heading reveal">
+          <span class="section-number">03.</span>
+          <p class="eyebrow">Selected Work</p>
+          <h2>가장 크게 운영한 작업들</h2>
+        </div>
+        <div class="work-list">
+          <article class="work-card reveal">
+            <div>
+              <span>01 · 2026 · Online Judge</span>
+              <h3>ZOJ</h3>
+              <p>HEPC에서 실제 운영한 온라인 저지. 채점 서버, 백엔드, 인프라, 배포를 맡았습니다.</p>
+            </div>
+            <button class="text-link project-jump" type="button" data-project="zoj">상세</button>
+          </article>
+          <article class="work-card reveal">
+            <div>
+              <span>02 · 2025- · Club Platform</span>
+              <h3>ZERONE 홈페이지</h3>
+              <p>학회 홍보, 가입, 회원 관리, 스터디, 이벤트를 통합한 운영 사이트입니다.</p>
+            </div>
+            <button class="text-link project-jump" type="button" data-project="zerone">상세</button>
+          </article>
+          <article class="work-card reveal">
+            <div>
+              <span>03 · 2026 · Runtime</span>
+              <h3>SDY.CODER</h3>
+              <p>Monaco Editor와 Docker sandbox를 연결한 웹 코드 실행 환경입니다.</p>
+            </div>
+            <button class="text-link project-jump" type="button" data-project="sdy-coder">상세</button>
+          </article>
+          <article class="work-card reveal">
+            <div>
+              <span>04 · 2021- · Infrastructure</span>
+              <h3>Homelab</h3>
+              <p>포트폴리오 서비스들이 올라가는 자체 서버, Proxmox, OPNsense, NAS 환경입니다.</p>
+            </div>
+            <button class="text-link project-jump" type="button" data-project="homelab">상세</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section-shell project-section">
+        <div class="section-heading reveal">
+          <span class="section-number">04.</span>
+          <p class="eyebrow">Projects</p>
+          <h2>프로젝트별 배경과 구현</h2>
+        </div>
+
+        <div class="project-browser reveal" id="projectBrowser">
+          <aside class="project-rail" aria-label="프로젝트 목록">
+            <button class="project-tab active" type="button" data-project="zoj">
+              <span>2026-NOW · Online Judge</span>
+              <strong>ZOJ</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="zerone">
+              <span>2025-NOW · Club Management</span>
+              <strong>ZERONE</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="sdy-coder">
+              <span>2026-NOW · Code Runtime</span>
+              <strong>SDY.CODER</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="nmixx">
+              <span>2023-2024 · Fan Platform</span>
+              <strong>NMIXX</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="hepc">
+              <span>2026 · Contest Ops</span>
+              <strong>HEPC</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="efoo">
+              <span>2025 · Mobile App</span>
+              <strong>EFOO</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="homelab">
+              <span>2021-NOW · Infrastructure</span>
+              <strong>Homelab</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="environment">
+              <span>2023 · IoT Weather</span>
+              <strong>지금 기상 상황은?</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="plant">
+              <span>2023 · Automation</span>
+              <strong>자동 식물 관리</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="chatbot">
+              <span>2022-2024 · Student Service</span>
+              <strong>학교 정보 챗봇</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="damul">
+              <span>2019 · Invention Contest</span>
+              <strong>다물이</strong>
+            </button>
+            <button class="project-tab" type="button" data-project="middle-dust">
+              <span>2019 · Sensor Device</span>
+              <strong>미세먼지 온습도 측정기</strong>
+            </button>
+          </aside>
+
+          <article class="project-detail" aria-live="polite">
+            <div class="project-detail-copy">
+              <div class="detail-meta">
+                <span id="detailYear">2026</span>
+                <span id="detailStatus">실전 운영</span>
+                <span id="detailType">Online Judge / Contest Ops</span>
+              </div>
+              <h3 id="detailTitle">ZOJ — ZeroOne Online Judge</h3>
+              <p id="detailSummary">
+                프로그래밍 대회 운영을 위해 구축한 온라인 저지 플랫폼입니다.
+              </p>
+              <div class="detail-links" id="detailLinks" aria-label="프로젝트 링크"></div>
+            </div>
+
+            <div class="project-gallery" aria-label="프로젝트 이미지">
+              <figure class="project-shot primary-shot" data-shot-index="0">
+                <div class="shot-fallback">
+                  <span>ZOJ</span>
+                  <strong>Contest Admin</strong>
+                </div>
+                <figcaption>문제와 테스트케이스 운영</figcaption>
+              </figure>
+              <figure class="project-shot" data-shot-index="1">
+                <div class="shot-fallback">
+                  <span>isolate</span>
+                  <strong>Sandbox Judge</strong>
+                </div>
+                <figcaption>제한된 제출 실행 환경</figcaption>
+              </figure>
+              <figure class="project-shot" data-shot-index="2">
+                <div class="shot-fallback">
+                  <span>Ops</span>
+                  <strong>HEPC Operation</strong>
+                </div>
+                <figcaption>2시간 실전 대회 운영</figcaption>
+              </figure>
+            </div>
+
+            <div class="detail-columns">
+              <section>
+                <h4>Problem</h4>
+                <p id="detailProblem">
+                  대회 운영자가 문제와 테스트케이스를 직접 등록하고, 참가자는 제한된 실행 환경에서 제출할 수 있어야 했습니다.
+                </p>
+              </section>
+              <section>
+                <h4>System</h4>
+                <p id="detailSystem">
+                  isolate 기반 샌드박스와 FIFO 채점 흐름을 구성했습니다.
+                </p>
+              </section>
+              <section>
+                <h4>Quality</h4>
+                <p id="detailQuality">
+                  HEPC 2시간 운영 중 350건 이상의 채점이 진행됐습니다.
+                </p>
+              </section>
+            </div>
+
+            <div class="detail-foot">
+              <dl>
+                <div>
+                  <dt>Role</dt>
+                  <dd id="detailRole">기획 · 백엔드 · 인프라 · 배포 · 채점 서버 전체</dd>
+                </div>
+                <div>
+                  <dt>Scale</dt>
+                  <dd id="detailScale">HEPC 첫 실전 운영 · 2시간 350+ 채점</dd>
+                </div>
+              </dl>
+              <ul class="tag-list detail-tags" id="detailTags">
+                <li>FastAPI</li>
+                <li>isolate</li>
+                <li>Linux</li>
+                <li>FIFO Judge</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="infra" class="section-shell infra-section">
+        <div class="section-heading reveal">
+          <span class="section-number">05.</span>
+          <p class="eyebrow">Infrastructure</p>
+          <h2>직접 설계하는 하드웨어와 인프라로.</h2>
+        </div>
+        <div class="infra-layout">
+          <div class="infra-copy reveal">
+            <p>
+              WAN, OPNsense, Reverse Proxy, Proxmox Cluster, NAS, Tailscale을 직접 구성합니다.
+              서버 부품 교체와 부팅 테스트부터 VM 운영, 서비스 배포, 장애 확인까지 이어서 봅니다.
+            </p>
+            <div class="capability-grid">
+              <span><strong>Virtualization</strong><small>Proxmox VM/LXC</small></span>
+              <span><strong>Network</strong><small>OPNsense · 분리망</small></span>
+              <span><strong>Deploy</strong><small>Reverse Proxy · Docker</small></span>
+              <span><strong>Hardware</strong><small>조립 · 교체 · 테스트</small></span>
+            </div>
+          </div>
+          <div class="system-map reveal" aria-label="홈랩 인프라 구조">
+            <article>
+              <span>01</span>
+              <strong>WAN</strong>
+              <small>외부 진입</small>
+            </article>
+            <article>
+              <span>02</span>
+              <strong>OPNsense</strong>
+              <small>방화벽과 네트워크 분리</small>
+            </article>
+            <article>
+              <span>03</span>
+              <strong>Reverse Proxy</strong>
+              <small>서비스 라우팅</small>
+            </article>
+            <article>
+              <span>04</span>
+              <strong>Proxmox</strong>
+              <small>VM/LXC 운영</small>
+            </article>
+            <article>
+              <span>05</span>
+              <strong>NAS</strong>
+              <small>데이터와 백업</small>
+            </article>
+            <article>
+              <span>06</span>
+              <strong>Tailscale</strong>
+              <small>원격 관리</small>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell principle-section">
+        <div class="section-heading reveal">
+          <span class="section-number">06.</span>
+          <p class="eyebrow">How I Work</p>
+          <h2>사소한 운영 하나까지.</h2>
+        </div>
+        <div class="principle-list">
+          <article class="reveal">
+            <span>01</span>
+            <h3>데모에서 멈추지 않기</h3>
+            <p>권한, 입력 검증, 예외, 실패 상태, 느린 응답을 따로 확인합니다.</p>
+          </article>
+          <article class="reveal">
+            <span>02</span>
+            <h3>운영자가 쓸 수 있게 만들기</h3>
+            <p>문제 업로드, 회원 승인, 이벤트 처리처럼 실제 관리 흐름을 같이 설계합니다.</p>
+          </article>
+          <article class="reveal">
+            <span>03</span>
+            <h3>내가 배포한 환경까지 책임지기</h3>
+            <p>프록시, 로그, 장애 확인, 서버 상태를 구현 범위 밖으로 밀어두지 않습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell timeline-section">
+        <div class="section-heading reveal">
+          <span class="section-number">07.</span>
+          <p class="eyebrow">Path</p>
+          <h2>하드웨어에서 실제 서비스까지.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span>초등학교</span>
+            <p>Arduino와 센서로 물리적인 문제를 해결하는 프로젝트를 시작했습니다.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>중·고등학교</span>
+            <p>IoT, MQTT, 웹, 카카오톡 챗봇으로 학교 안에서 쓰는 서비스를 만들었습니다.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>대학교</span>
+            <p>ZERONE 운영, HEPC 주관, ZOJ 채점 인프라와 자체 서버 운영으로 확장했습니다.</p>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 SDY</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
