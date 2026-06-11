@@ -63,3 +63,7 @@ def contact(message: ContactMessage) -> dict[str, str]:
         "status": "received",
         "message": f"{message.name}님의 메시지를 받았습니다.",
     }
+
+@app.exception_handler(404)
+def not_found(request: Request, exc) -> FileResponse:
+    return FileResponse(STATIC_DIR / "404.html", status_code=404)

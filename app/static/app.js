@@ -734,6 +734,83 @@ function renderProjectTags(tags) {
   );
 }
 
+function getProjectCaseSections(project) {
+  if (Array.isArray(project.caseSections) && project.caseSections.length) {
+    return project.caseSections;
+  }
+
+  return [
+    {
+      title: "프로젝트 소개",
+      kicker: "서비스 이름과 한 줄 소개",
+      body: project.summary,
+    },
+    {
+      title: "프로젝트 개요",
+      kicker: "배경과 목적",
+      body: project.problem,
+    },
+    {
+      title: "진행한 일",
+      kicker: "배경-문제-핵심-해결",
+      body: project.system,
+    },
+    {
+      title: "과정",
+      kicker: "직접 한 액션과 판단",
+      body: `${project.role}. ${project.system}`,
+    },
+    {
+      title: "결과물",
+      kicker: "최종 결과와 포인트",
+      body: project.quality,
+    },
+    {
+      title: "성장한 점",
+      kicker: "성과 또는 배운 점",
+      body: project.scale
+        ? `${project.scale}. 이 작업을 통해 기능 구현뿐 아니라 운영 흐름, 실패 상황, 관리자가 처리해야 하는 일을 함께 보는 기준을 더 분명히 만들었습니다.`
+        : "이 작업을 통해 기능 구현뿐 아니라 운영 흐름, 실패 상황, 관리자가 처리해야 하는 일을 함께 보는 기준을 더 분명히 만들었습니다.",
+    },
+    {
+      title: "나의 역량",
+      kicker: "기여할 수 있는 부분",
+      body: `담당 범위는 ${project.role}입니다. 관련 기술은 ${project.tags.join(", ")}입니다.`,
+    },
+  ];
+}
+
+function renderCaseSections(project) {
+  const container = document.getElementById("caseSections");
+  if (!container) return;
+
+  container.replaceChildren(
+    ...getProjectCaseSections(project).map((section, index) => {
+      const article = document.createElement("section");
+      article.className = "case-section";
+
+      const number = document.createElement("span");
+      number.className = "case-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+
+      const content = document.createElement("div");
+
+      const title = document.createElement("h4");
+      title.textContent = section.title;
+
+      const kicker = document.createElement("strong");
+      kicker.textContent = section.kicker;
+
+      const body = document.createElement("p");
+      body.textContent = section.body;
+
+      content.append(title, kicker, body);
+      article.append(number, content);
+      return article;
+    })
+  );
+}
+
 function renderProjectShots(shots) {
   document.querySelectorAll(".project-shot").forEach((shotElement, index) => {
     const shot = shots[index] || shots[0];
@@ -792,13 +869,11 @@ function renderProject(projectKey, shouldScroll = false) {
   setText("detailType", project.type);
   setText("detailTitle", project.title);
   setText("detailSummary", project.summary);
-  setText("detailProblem", project.problem);
-  setText("detailSystem", project.system);
-  setText("detailQuality", project.quality);
   setText("detailRole", project.role);
   setText("detailScale", project.scale);
   renderProjectLinks(project.links);
   renderProjectTags(project.tags);
+  renderCaseSections(project);
   renderProjectShots(project.shots);
   renderedProjectKey = projectKey;
 
